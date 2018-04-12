@@ -3,6 +3,8 @@
 set -e # exit immediately if a simple command exits with a non-zero status
 set -u # report the usage of uninitialized variables
 
+echo `date` "executing gerrit prestart"
+
 source /var/vcap/jobs/gerrit/data/properties.sh
 
 if [[ ! -d ${GERRIT_STORE} ]]; then
@@ -12,9 +14,18 @@ fi
 if [ ! -f ${GERRIT_STORE}/etc/gerrit.config ]
 then
     mkdir -p ${GERRIT_STORE}/etc/
-    cp /var/vcap/jobs/gerrit/config/gerrit.config ${GERRIT_STORE}/etc/gerrit.config
-    cp /var/vcap/jobs/gerrit/config/secure.config ${GERRIT_STORE}/etc/secure.config
+    ln -s /var/vcap/jobs/gerrit/config/gerrit.config ${GERRIT_STORE}/etc/gerrit.config
+    ln -s /var/vcap/jobs/gerrit/config/secure.config ${GERRIT_STORE}/etc/secure.config
 fi
+
+for JAR in bcpkix-jdk15on-1.56.jar bcprov-jdk15on-1.56.jar
+do
+    if [ ! -f ${GERRIT_STORE}/lib/${JAR} ]
+    then
+        mkdir -p ${GERRIT_STORE}/lib/
+        ln -s /var/vcap/packages/gerrit/bouncycastle/${JAR} ${GERRIT_STORE}/lib/${JAR}
+    fi
+done
 
 chown vcap:vcap -R ${GERRIT_STORE}
 

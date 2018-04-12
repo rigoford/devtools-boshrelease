@@ -17,17 +17,49 @@ packages:
   - gerrit
 
 properties:
-  gerrit.database.type:
-    description: "Database type, e.g. H2, MYSQL"
-    default: H2
-  gerrit.database.password:
-    description: "Database password for the gerrit user"
-  gerrit.database.host:
-    description: "Hostname of the gerrit database"
-    default: localhost
-  gerrit.database.name:
-    description: "Name of the database for gerrit"
+# Refer to https://gerrit-review.googlesource.com/Documentation/config-gerrit.html for full details
+  gerrit.addreviewer.maxAllowed:
+    description: "The maximum number of reviewers a user can add at once by adding a group as reviewer. If set to 0, there is no limit for the number of reviewers that can be added at once by adding a group as reviewer."
+    default: 20
+  gerrit.addreviewer.maxWithoutConfirmation:
+    description: "The maximum number of reviewers a user can add at once by adding a group as reviewer without being asked to confirm the operation. If set to 0, the user will never be asked to confirm adding a group as reviewer."
+    default: 10
+
+  gerrit.auth.type:
+    description: "Type of user authentication employed by Gerrit."
+    default: OpenID
+
+  gerrit.changeCleanup.interval:
+    description: "The interval for running change cleanups."
+    default: 7 days
+
+  gerrit.commentlink.name:
+    description: "Comment link name."
+    default: none
+  gerrit.commentlink.match:
+    description: "A JavaScript regular expression to match positions to be replaced with a hyperlink. Subexpressions of the matched string can be stored using groups and accessed with $'n' syntax, where 'n' is the group number, starting from 1."
+  gerrit.commentlink.html:
+    description: "HTML to replace the entire matched string with. If present, this property overrides the link property above. Groups in the match expression may be accessed as $'n'."
+
+  gerrit.database.database:
+    description: "The name of the database on the server."
     default: reviewdb
+  gerrit.database.hostname:
+    description: "Hostname of the database server."
+    default: localhost
+  gerrit.database.type:
+    description: "Type of database server to connect to."
+    default: H2
   gerrit.database.username:
-    description: "Username to connect to the gerrit database"
+    description: "Username to connect to the database server as."
     default: gerrit
+  gerrit.database.password:
+    description: "Password to authenticate to the database server with."
+
+  gerrit.gc.interval:
+    description: "The interval for running the git garbage collection."
+    default: 7 days
+
+  gerrit.gerrit.canonicalWebUrl:
+    description: "The default URL for Gerrit to be accessed through."
+    default: http://localhost:8080

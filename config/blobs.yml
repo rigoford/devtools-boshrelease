@@ -1,6 +1,18 @@
+bouncycastle/bcpkix-jdk15on-1.56.jar:
+  size: 685403
+  object_id: 39a6aba3-df32-4e05-75b6-6253ba78f49c
+  sha: 4648af70268b6fdb24674fb1fd7c1fcc73db1231
+bouncycastle/bcprov-jdk15on-1.56.jar:
+  size: 3448507
+  object_id: 1272c08f-bdfa-4bdf-67e1-c291b82453c5
+  sha: a153c6f9744a3e9dd6feab5e210e1c9861362ec7
+gerrit/gerrit-2.13.9.war:
+  size: 51278489
+  object_id: dbc7da05-d94d-42c7-7958-4045c35bd25e
+  sha: 769bc441e42089a9d052a7be1bb1a0954ca176ce
 gerrit/gerrit-2.14.3.war:
   size: 85875129
-  object_id: b896fe76-14a1-4f39-5fc6-48273b9922be
+  object_id: a8cb529f-3bb2-43a1-664b-7bc722c0d131
   sha: 399db7385be85eedf71caa464d91726fe37d26ca
 git/git-2.14.1.tar.gz:
   size: 6987933

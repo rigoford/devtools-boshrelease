@@ -1,25 +1,39 @@
+[addreviewer]
+    <%= 'maxAllowed = ' + p('gerrit.addreviewer.maxAllowed').to_s if defined?('gerrit.addreviewer.maxAllowed') %>
+    <%= 'maxWithoutConfirmation = ' + p('gerrit.addreviewer.maxWithoutConfirmation').to_s if defined?('gerrit.addreviewer.maxWithoutConfirmation') %>
+[auth]
+    type = <%= p('gerrit.auth.type') %> 
+[cache]
+    directory = cache
+<% if p('gerrit.commentlink.name') != 'none' %>
+[commentlink "<%= p('gerrit.commentlink.name') %>"]
+    match = <%= p('gerrit.commentlink.match') %> 
+    html = <%= p('gerrit.commentlink.html') %> 
+<% end %>
+[container]
+    user = vcap
+    javaHome = /var/vcap/packages/oraclejdk/jre
+[changeCleanup]
+    interval = <%= p('gerrit.changeCleanup.interval') %>
+[gc]
+    interval = <%= p('gerrit.gc.interval') %>
 [gerrit]
-	basePath = git
-	canonicalWebUrl = http://localhost:8080/
+    basePath = git
+    canonicalWebUrl = <%= p('gerrit.gerrit.canonicalWebUrl') %>
 [database]
     type = <%= p('gerrit.database.type') %>
-    hostname = <%= p('gerrit.database.host') %>
-    database = <%= p('gerrit.database.name') %>
+<% if p('gerrit.database.type') != 'H2' %>
+    hostname = <%= p('gerrit.database.hostname') %>
+    database = <%= p('gerrit.database.database') %>
     username = <%= p('gerrit.database.username') %>
-[index]
-	type = LUCENE
-[auth]
-	type = OPENID
-[receive]
-	enableSignedPush = false
-[sendemail]
-	smtpServer = localhost
-[container]
-	user = vcap
-	javaHome = /var/vcap/packages/oraclejdk/jre
-[sshd]
-	listenAddress = *:29418
+<% end %>
 [httpd]
-	listenUrl = http://*:8080/
-[cache]
-	directory = cache
+    listenUrl = http://*:8080
+[index]
+    type = LUCENE
+[receive]
+    enableSignedPush = false
+[sendemail]
+    smtpServer = localhost
+[sshd]
+    listenAddress = *:29418

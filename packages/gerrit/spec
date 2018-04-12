@@ -6,4 +6,6 @@ dependencies:
   - git-client
 
 files:
-  - gerrit/gerrit-2.14.3.war
+  - gerrit/gerrit-2.13.9.war
+  - bouncycastle/bcpkix-jdk15on-1.56.jar
+  - bouncycastle/bcprov-jdk15on-1.56.jar
